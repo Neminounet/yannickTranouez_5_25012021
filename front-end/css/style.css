@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+body {
+    margin: 0;
+    background-color:  #f9f2ec;
+}
+a {
+    text-decoration: none;
+}
+/* BANNER */
+.banner {
+    width: 100vw;
+    height: auto;
+    display: grid;
+    grid-template-areas: "bear . title title . cart";
+    background: linear-gradient(to bottom, #d9b38c, #f2e6d9);
+    box-shadow: 0 5px 10px #4d3319 ;
+}
+.bear-logo {
+    grid-area: bear;
+    background-image: url(/assets/image/bear-logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.main-title {
+    grid-area: title;
+    font-size: 9em;
+    text-align: center;
+    margin: 0;
+}
+.main-title a {
+    color: black;
+}
+.cart{
+    grid-area: cart;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-shopping-cart {
+    color: white;
+    font-size: 4em;
+}
