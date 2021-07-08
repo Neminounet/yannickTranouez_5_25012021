@@ -4,7 +4,8 @@ let myCard = "";
 
 // FETCH
 
-fetch(url, {method : "GET"}).then(data => {
+fetch(url, {method : "GET"})
+.then(data => {
     return data.json()
 }).then(products => {
     console.log(products);
@@ -20,7 +21,7 @@ fetch(url, {method : "GET"}).then(data => {
                                     <h6>${product.price / 100} €</h6>
                                 </div>
                                 <div class="card-footer">
-                                    <a class="btn btn-secondary">Voir le Produit <i class="fas fa-shopping-cart"></i></a>
+                                    <a href="pages/product.html?id=${product._id}" class="btn btn-secondary">Voir le Produit <i class="fas fa-shopping-cart"></i></a>
                                 </div>
                             </div>
                         </div>
