@@ -36,7 +36,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8">
-                        <ul class="list-group m-3">
+                        <h1 class="display-6 alert alert-light mt-3">Articles dans le panier</h1>
+                        <ul class="list-group my-3">
                             <li class="list-group-item d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
                                 <img src="../assets/image/Nounours_BG.jpg"  class="w-50 rounded">
                                 <div class="mx-4">
@@ -47,43 +48,91 @@
                                 </div>
                                 <h5 class="align-self-center">50€</h5>
                             </li>
-                            <li class="list-group-item d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
-                                <img src="../assets/image/Nounours_BG.jpg"  class="w-50 rounded">
-                                <div class="mx-4">
-                                    <h5>Nounours BG</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat autem qui nisi rerum, deserunt a quam veritatis dicta sed facilis. Esse ut perspiciatis dolore itaque maxime magnam error quisquam earum?</p>
-                                    <p>Quantité : <span class="fw-bold">1</span></p>
-                                    <button type="button" class="btn-close" title="Retirer cet objet du panier"></button>
-                                </div>
-                                <h5 class="align-self-center">50€</h5>
-                            </li>
-                            <li class="list-group-item d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
-                                <img src="../assets/image/Nounours_BG.jpg"  class="w-50 rounded">
-                                <div class="mx-4">
-                                    <h5>Nounours BG</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat autem qui nisi rerum, deserunt a quam veritatis dicta sed facilis. Esse ut perspiciatis dolore itaque maxime magnam error quisquam earum?</p>
-                                    <p>Quantité : <span class="fw-bold">1</span></p>
-                                    <button type="button" class="btn-close" title="Retirer cet objet du panier"></button>
-                                </div>
-                                <h5 class="align-self-center">50€</h5>
-                            </li>
-                            <li class="list-group-item">A fourth item</li>
-                            <li class="list-group-item">And a fifth one</li>
                         </ul>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="card m-3 text-center">
                             <div class="card-body">
-                                <h4>Récapitulatif</h4>
+                                <h4 class="card-title">Récapitulatif</h4>
                                 <ul class="list-unstyled my-4">
-                                    <li><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
-                                    <li><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
-                                    <li><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
+                                    <li class="card-text"><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
+                                    <li class="card-text"><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
+                                    <li class="card-text"><span class="fw-bold">x1</span><em> Nounours BG</em><span class="fw-bold"> 50€</span></li>
                                 </ul>
                                 <h5>Total panier</h5>
                                 <h3 class="alert bg-success">150 €</h3>
+                                <a href="#inputName" class="btn btn-dark">Poursuivre</a>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="bg-light rounded p-5 my-4">
+                        <h4>Informations requises</h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="inputName" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="inputName" placeholder="Votre Nom" required>    
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="inputFirstName" class="form-label">Prénom</label>
+                                    <input type="text" class="form-control" id="inputFirstName" placeholder="Votre Prénom" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="inputEmail" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Votre adresse e-mail" required> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="inputPostalCode" class="form-label">Code Postal</label>
+                                    <input type="number" class="form-control" id="inputPostalCode" placeholder="Votre Code Postal" min="00000" max="99999" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="inputCity" class="form-label">Ville</label>
+                                    <input type="text" class="form-control" id="inputCity" placeholder="Votre Ville" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="inputAdress" class="form-label">Adresse</label>
+                                    <input type="text" class="form-control" id="inputCity" placeholder="Votre Adresse" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Carte crédit</h5>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                    <label for="creditCardName" class="visually-hidden"></label>
+                                    <input type="text" class="form-control" id="creditCardName" placeholder="Nom Propriétaire" required>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <select class="form-select" id="creditCardType" required>
+                                        <option selected>Type de Carte</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="mastercard">MasterCard</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="cardNumber" class="form-label">Numéro de Carte</label>
+                                    <input type="number" class="form-control" id="cardNumber" min="0000000000000000" max="9999999999999999" required>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label for="cvv" class="form-label">cvv</label>
+                                    <input type="number" class="form-control" id="cvv" min="000" max="999" required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-8 col-md-4 mx-auto mx-md-0">
+                                    <button class="btn btn-dark" type="submit">Commander</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
