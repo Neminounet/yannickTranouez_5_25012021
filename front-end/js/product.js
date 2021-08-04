@@ -22,15 +22,44 @@ fetch(url, {method : "GET"})
         <h4 class="card-title">${entries.name}</h4>
         <p class="card-text w-75 mx-auto">${entries.description}</p>
         <div class="card-header">
-            <select class="form-select form-select-sm w-50 m-auto">
-                <option selected>Couleurs</option>
+            <select class="form-select form-select-sm w-50 m-auto" id="select">
+            <option>Couleurs</option>
                 ${myColor}
-            </select>  
+            </select>
             <h5>${formatter.format(entries.price / 100)}</h5>
         </div>
         <div class="card-footer">
-            <a class="btn btn-secondary">Ajouter au panier <i class="fas fa-shopping-cart"></i></a>
+            <a class="btn btn-secondary" id="ajoutPanier">Ajouter au panier <i class="fas fa-shopping-cart"></i></a>
         </div>
     </div>`;
     itemPres.innerHTML = myPres;
+
+    //  Le panier
+
+    //  Cibler le bouton du panier
+    const btn_ajoutPanier = document.querySelector("#ajoutPanier");
+    
+    // Ecouter le bouton du panier
+    btn_ajoutPanier.addEventListener("click", ()=>{
+
+        //  Récupération de la couleur du Nounours 
+
+        let select = document.querySelector("#select");
+        let value = select.options[select.selectedIndex].value;
+       
+        // Récupération des données du produit dans un objet 
+        let optionsProduit = {
+            id: entries._id,
+            name: entries.name,
+            description: entries.description,
+            couleur: value,
+            quantité: 1,
+            price: formatter.format(entries.price / 100),
+            image: entries.imageUrl
+        };
+        console.log(optionsProduit);
+    })
 });
+
+ 
+
