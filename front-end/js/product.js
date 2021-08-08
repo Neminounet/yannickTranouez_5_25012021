@@ -1,4 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
+//  Dans le cas où nous avons nommé l'url différement exemple .html?identification=${api.id}... il faudra faire un urlParams.get("identification");
 const urlID = urlParams.get("id");
 let url = `http://localhost:3000/api/teddies/${urlID}`;
 let itemPres = document.querySelector("#itemPres");

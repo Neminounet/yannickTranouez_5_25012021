@@ -28,6 +28,7 @@ fetch(url, {method : "GET"})
                         </div>
                     </div>`;
                 });
+                // Concernant l'URL, il est obligatoire de la faire suivre par ? pour pouvoir faire un transfert, par contre id= aurait pu s'appeler autrement.
     console.log(myCard);
     produits.innerHTML = myCard;
 })
