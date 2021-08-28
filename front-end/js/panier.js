@@ -1,11 +1,11 @@
 // Récupération produits dans LocalStorage et conversion du JSON au JavaScript
 let produitsLocalStorage = JSON.parse(localStorage.getItem("produits"));
 console.log(produitsLocalStorage);
-
 const listeProduitsPanier = document.querySelector("#listeProduitsPanier");
 const listeRecap = document.querySelector("#listeRecap");
 const prixTotal = document.querySelector("#prixTotal");
 const viderPanier = document.querySelector("#viderPanier");
+let produitID = [];
 let formatter = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' });
 
 // Creer une fonction pour vider le LocalStorage
@@ -26,9 +26,10 @@ if(produitsLocalStorage === null){
     let produitDesc = ``;
     let produitRecap = ``;
     let total = 0;
-
+    
     produitsLocalStorage.forEach( (produit , index) => {
         total += parseFloat(produit.price);
+        produitID.push(produit.id)
         produitDesc += `<li class="list-group-item d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-lg-between">
         <img src="${produit.image}"  class="w-50 rounded">
         <div class="mx-4">
@@ -41,9 +42,7 @@ if(produitsLocalStorage === null){
         <h5 class="align-self-center">${produit.price}</h5>
         </li>`;
         produitRecap += `<li class="card-text"><span class="fw-bold">x ${produit.quantité}</span><em> ${produit.name}</em><span class="fw-bold"> ${produit.price}</span></li>`;
-          
     });
-    
     let totalConvert = formatter.format(total);
     // Ne pas oublier d'envoyer le prix dans le local Storage
     localStorage.setItem("Prix Total", JSON.stringify(totalConvert));
@@ -57,7 +56,6 @@ if(produitsLocalStorage === null){
 let btnDelete = document.querySelectorAll(".deleteItem");
 
 btnDelete.forEach((element) =>{
-    console.log(element);
     element.addEventListener("click", (e) => {
         e.preventDefault();
         let index = e.target.dataset.index;
@@ -72,28 +70,53 @@ btnDelete.forEach((element) =>{
 // Récupérer les données du formulaire
 const btnSubmit = document.querySelector("#btnSubmit");
 
+//  Création des REGEX
+const regexName = new RegExp("[a-zA-Z]{1,}");
+const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+const regexNumber = new RegExp("[0-9]{5}");
+const regexAdress = new RegExp("^[a-zA-Z0-9\s,'-]{1,}");
+
+//  Récupération du prix
+let price = JSON.parse(localStorage.getItem("Prix Total"));
+console.log(price);
+
 // Au clic récupération de toutes les données dans un objet
 btnSubmit.addEventListener("click", (e)=>{
     e.preventDefault();
 
-    let donneesForm = {
-        nom: document.querySelector("#inputName").value,
-        prenom: document.querySelector("#inputFirstName").value,
-        email: document.querySelector("#inputEmail").value,
-        codePostal: document.querySelector("#inputPostalCode").value,
-        ville: document.querySelector("#inputCity").value,
-        adresse: document.querySelector("#inputAdress").value,
-        nomCarte: document.querySelector("#creditCardName").value,
-        typeCarte:  document.querySelector("#creditCardType").value,
-        numeroCarte: document.querySelector("#cardNumber").value,
-        cvv: document.querySelector("#cvv").value,
+    let recap = {
+        contact: {
+                firstName: document.querySelector("#inputFirstName").value,
+                lastName: document.querySelector("#inputName").value,
+                address: document.querySelector("#inputAdress").value,
+                city: document.querySelector("#inputCity").value,
+                email: document.querySelector("#inputEmail").value
+        },
+        products: produitID
+    };
+    
+    if(regexName.test(recap.contact.lastName) && regexName.test(recap.contact.firstName) && regexEmail.test(recap.contact.email) && regexName.test(recap.contact.city) && regexAdress.test(recap.contact.adress) && price !== null){
+        fetch("http://localhost:3000/api/teddies/order", {
+            method: "POST",
+            headers: {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(recap)
+        })
+        .then(retour =>{
+            return retour.json();
+        })
+        .then(result =>{
+            console.log(result);
+            window.location.href = "order.html";
+            localStorage.setItem("OrderID", JSON.stringify(result.orderId));
+        })
     }
-    console.log(donneesForm);
-
-   if (donneesForm.nom && donneesForm.prenom && donneesForm.email && donneesForm.codePostal && donneesForm.ville && donneesForm.adresse && donneesForm.nomCarte && donneesForm.typeCarte && donneesForm.numeroCarte && donneesForm.cvv !== null){
-      localStorage.setItem("informations", JSON.stringify(donneesForm));
-       alert("Tes un champion !");
-   } else {
-       alert("Veuillez remplir tous les formulaires !");
-   }
+    else if(price === null){
+        alert("Votre panier est vide !");
+    }
+    else{
+        alert("Veuillez Remplir les formulaires !");
+    };
 })
