@@ -1,6 +1,8 @@
 // Récupération produits dans LocalStorage et conversion du JSON au JavaScript
 let produitsLocalStorage = JSON.parse(localStorage.getItem("produits"));
 console.log(produitsLocalStorage);
+
+// Variables
 const listeProduitsPanier = document.querySelector("#listeProduitsPanier");
 const listeRecap = document.querySelector("#listeRecap");
 const prixTotal = document.querySelector("#prixTotal");
@@ -13,6 +15,7 @@ viderPanier.addEventListener("click", ()=> {
     localStorage.clear();
     document.location.reload();
 })
+
 // Nous allons vérifier si le panier est vide avec une condition if / else.
 // Si le panier est vide alors 
 if(produitsLocalStorage === null){
